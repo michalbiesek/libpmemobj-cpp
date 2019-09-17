@@ -123,8 +123,12 @@ docker run --privileged=true --name=$containerName -ti \
 	--env COVERITY_SCAN_NOTIFICATION_EMAIL=$COVERITY_SCAN_NOTIFICATION_EMAIL \
 	--env COVERAGE=$COVERAGE \
 	--env CLANG_FORMAT=clang-format-3.8 \
+	--env CCACHE_DIR=/opt/ccache \
 	--env TZ='Europe/Warsaw' \
 	-v $HOST_WORKDIR:$WORKDIR \
+	-v $HOME/.ccache:/opt/ccache \
 	-v /etc/localtime:/etc/localtime \
 	-w $SCRIPTSDIR \
 	$imageName $command
+ccache -s
+ccache -z

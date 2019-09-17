@@ -27,6 +27,9 @@ before_install:
   - rm -f push_image_to_repo_flag skip_build_package_check
 
 script:
+  - mkdir -p $HOME/.ccache
+  - ccache -s
+  - ccache -z
   - ./build.sh
 
 after_success:
