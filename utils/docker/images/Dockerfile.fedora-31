@@ -45,6 +45,7 @@ RUN dnf update -y \
 	autoconf \
 	automake \
 	bash-completion \
+	ccache \
 	clang \
 	cmake \
 	daxctl-devel \

@@ -152,5 +152,6 @@ docker run --privileged=true --name=$containerName -i $TTY \
 	--env TZ='Europe/Warsaw' \
 	-v $HOST_WORKDIR:$WORKDIR \
 	-v /etc/localtime:/etc/localtime \
+	-v $HOME/ccache \
 	-w $SCRIPTSDIR \
 	$imageName $command

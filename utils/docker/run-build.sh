@@ -104,7 +104,7 @@ function tests_clang_debug_cpp17_no_valgrind() {
 	cd build
 
 	PKG_CONFIG_PATH=/opt/pmdk/lib/pkgconfig/ \
-	CC=clang CXX=clang++ \
+	CC=ccache clang CXX=ccache clang++ \
 	cmake .. -DDEVELOPER_MODE=1 \
 		-DCHECK_CPP_STYLE=${CHECK_CPP_STYLE} \
 		-DCMAKE_BUILD_TYPE=Debug \
@@ -122,7 +122,11 @@ function tests_clang_debug_cpp17_no_valgrind() {
 	if [ "$COVERAGE" == "1" ]; then
 		upload_codecov tests_clang_debug_cpp17
 	fi
-
+	echo; \
+	echo \"####################\"; \
+	echo \"### ccache tests_clang_debug_cpp17_no_valgrind stats ###\"; \
+	echo \"####################\"; \
+	ccache -s; \
 	cd ..
 	rm -r build
 	printf "$(tput setaf 1)$(tput setab 7)BUILD ${FUNCNAME[0]} END$(tput sgr 0)\n\n"
@@ -135,7 +139,7 @@ function build_gcc_debug() {
 	cd build
 
 	PKG_CONFIG_PATH=/opt/pmdk/lib/pkgconfig/ \
-	CC=gcc CXX=g++ \
+	CC=ccache gcc CXX=ccache g++ \
 	cmake .. -DDEVELOPER_MODE=1 \
 		-DCHECK_CPP_STYLE=${CHECK_CPP_STYLE} \
 		-DCMAKE_BUILD_TYPE=Debug \
@@ -147,8 +151,12 @@ function build_gcc_debug() {
 		-DTEST_DIR=/mnt/pmem \
 		-DTESTS_USE_FORCED_PMEM=1 \
 		-DTESTS_CONCURRENT_HASH_MAP_DRD_HELGRIND=1
-
 	make -j$(nproc)
+	echo; \
+	echo \"####################\"; \
+	echo \"### ccache tests_gcc_debug stats ###\"; \
+	echo \"####################\"; \
+	ccache -s; \
 }
 
 ###############################################################################

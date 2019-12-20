@@ -7,6 +7,12 @@ language: cpp
 services:
   - docker
 
+cache:
+   bundler: true
+   directories:
+    - $HOME/docker
+    - $HOME/ccache
+
 env:
   global:
     - GITHUB_REPO=pmem/libpmemobj-cpp
@@ -28,6 +34,11 @@ before_install:
   - export HOST_WORKDIR=`pwd`
   - cd utils/docker
   - ./pull-or-rebuild-image.sh
+
+before_script:
+  - sudo chown -R 1000 .
+  # make sure ccache is writable in the container
+  - sudo chown -R 1000 $HOME/ccache
 
 script:
   - ./build.sh
