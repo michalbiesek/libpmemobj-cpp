@@ -70,7 +70,7 @@ ARG TESTS_DEPS="\
 
 # Misc for our builds/CI (optional)
 ARG MISC_DEPS="\
-	clang \
+	clang-10 \
 	hub \
 	perl-Text-Diff \
 	pkgconf \

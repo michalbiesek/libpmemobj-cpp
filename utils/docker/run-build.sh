@@ -34,7 +34,7 @@ function tests_clang_debug_cpp17_no_valgrind() {
 	cd build
 
 	PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:/opt/pmdk/lib/pkgconfig/ \
-	CC=clang CXX=clang++ \
+	CC=clang-10 CXX=clang-10++ \
 	cmake .. -DDEVELOPER_MODE=1 \
 		-DCHECK_CPP_STYLE=${CHECK_CPP_STYLE} \
 		-DCMAKE_BUILD_TYPE=Debug \
@@ -70,7 +70,7 @@ function tests_clang_release_cpp11_no_valgrind() {
 	cd build
 
 	PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:/opt/pmdk/lib/pkgconfig/ \
-	CC=clang CXX=clang++ \
+	CC=clang-10 CXX=clang-10++ \
 	cmake .. -DDEVELOPER_MODE=1 \
 		-DCHECK_CPP_STYLE=${CHECK_CPP_STYLE} \
 		-DCMAKE_BUILD_TYPE=Release \
